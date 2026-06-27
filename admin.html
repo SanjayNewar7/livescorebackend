@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 - Stream Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-futbol"></i>
+                <span>World Cup 2026</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="admin.html"><i class="fas fa-cog"></i> Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="totalGames">0</span>
+                    <span class="stat-label">Total Matches</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-video"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="totalStreams">0</span>
+                    <span class="stat-label">Total Streams</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="activeStreams">0</span>
+                    <span class="stat-label">Active Streams</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number" id="upcomingMatches">0</span>
+                    <span class="stat-label">Upcoming Matches</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <input type="text" id="searchInput" placeholder="Search matches..." class="search-input">
+                <select id="groupFilter" class="filter-select">
+                    <option value="all">All Groups</option>
+                    <option value="Group A">Group A</option>
+                    <option value="Group B">Group B</option>
+                    <option value="Group C">Group C</option>
+                    <option value="Group D">Group D</option>
+                </select>
+                <select id="streamFilter" class="filter-select">
+                    <option value="all">All Matches</option>
+                    <option value="has">Has Stream</option>
+                    <option value="no">No Stream</option>
+                </select>
+                <button id="refreshBtn" class="refresh-btn">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+        </section>
+
+        <!-- Matches Grid -->
+        <section class="matches-section">
+            <div class="matches-grid" id="matchesGrid">
+                <!-- Matches will be rendered here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 FIFA World Cup Stream Dashboard. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Stream Links -->
+    <div class="modal" id="streamModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Match Streams</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Stream links will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
