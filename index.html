@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA World Cup 2026 - Stream Dashboard</title>
+    <title>Live Sports Stream Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-futbol"></i>
-                <span>World Cup 2026</span>
+                <span>Live Stream Hub</span>
             </div>
             <div class="nav-links">
                 <a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
@@ -22,14 +21,43 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Stats Section -->
+        <!-- League Selector -->
+        <section class="league-selector">
+            <div class="league-tabs" id="leagueTabs">
+                <button class="league-tab active" data-league="worldcup">
+                    <i class="fas fa-trophy"></i> World Cup
+                </button>
+                <button class="league-tab" data-league="premier">
+                    <i class="fas fa-flag"></i> Premier League
+                </button>
+                <button class="league-tab" data-league="laliga">
+                    <i class="fas fa-flag"></i> La Liga
+                </button>
+                <button class="league-tab" data-league="seriea">
+                    <i class="fas fa-flag"></i> Serie A
+                </button>
+                <button class="league-tab" data-league="bundesliga">
+                    <i class="fas fa-flag"></i> Bundesliga
+                </button>
+                <button class="league-tab" data-league="ligue1">
+                    <i class="fas fa-flag"></i> Ligue 1
+                </button>
+                <button class="league-tab" data-league="champions">
+                    <i class="fas fa-trophy"></i> UCL
+                </button>
+                <button class="league-tab" data-league="europa">
+                    <i class="fas fa-trophy"></i> Europa
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats -->
         <section class="stats-section">
             <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
                 <div class="stat-info">
-                    <span class="stat-number" id="totalGames">0</span>
+                    <span class="stat-number" id="totalMatches">0</span>
                     <span class="stat-label">Total Matches</span>
                 </div>
             </div>
@@ -43,34 +71,33 @@
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
                 <div class="stat-info">
-                    <span class="stat-number" id="activeStreams">0</span>
-                    <span class="stat-label">Active Streams</span>
+                    <span class="stat-number" id="liveMatches">0</span>
+                    <span class="stat-label">Live Now</span>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
                 <div class="stat-info">
                     <span class="stat-number" id="upcomingMatches">0</span>
-                    <span class="stat-label">Upcoming Matches</span>
+                    <span class="stat-label">Upcoming</span>
                 </div>
             </div>
         </section>
 
-        <!-- Filter Section -->
+        <!-- Filters -->
         <section class="filter-section">
             <div class="filter-container">
-                <input type="text" id="searchInput" placeholder="Search matches..." class="search-input">
-                <select id="groupFilter" class="filter-select">
-                    <option value="all">All Groups</option>
-                    <option value="Group A">Group A</option>
-                    <option value="Group B">Group B</option>
-                    <option value="Group C">Group C</option>
-                    <option value="Group D">Group D</option>
+                <input type="text" id="searchInput" placeholder="Search teams, stadiums..." class="search-input">
+                <select id="dateFilter" class="filter-select">
+                    <option value="all">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                    <option value="week">This Week</option>
                 </select>
                 <select id="streamFilter" class="filter-select">
                     <option value="all">All Matches</option>
                     <option value="has">Has Stream</option>
-                    <option value="no">No Stream</option>
+                    <option value="live">Live Now</option>
                 </select>
                 <button id="refreshBtn" class="refresh-btn">
                     <i class="fas fa-sync"></i> Refresh
@@ -80,29 +107,28 @@
 
         <!-- Matches Grid -->
         <section class="matches-section">
-            <div class="matches-grid" id="matchesGrid">
-                <!-- Matches will be rendered here -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading matches...</p>
             </div>
+            <div class="matches-grid" id="matchesGrid"></div>
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 FIFA World Cup Stream Dashboard. All rights reserved.</p>
-    </footer>
-
-    <!-- Modal for Stream Links -->
+    <!-- Stream Modal -->
     <div class="modal" id="streamModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle">Match Streams</h2>
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Stream links will be rendered here -->
-            </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>Powered by ESPN API • Data updates every 5 minutes</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
