@@ -720,3 +720,173 @@ body {
         padding: 1rem;
     }
 }
+
+/* Previous styles remain the same... */
+
+/* League Selector */
+.league-selector {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.league-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.league-tab {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f2f5;
+    color: #666;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.league-tab:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.league-tab.active {
+    background: #1a1a2e;
+    color: white;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1/-1;
+}
+
+.loading-spinner i {
+    font-size: 3rem;
+    color: #f5c842;
+}
+
+.loading-spinner p {
+    margin-top: 15px;
+    color: #666;
+}
+
+/* Match Card Enhancements */
+.match-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.match-card .live-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6b6b;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.match-card .match-venue {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Admin Stats */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.admin-stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.admin-stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a2e;
+    display: block;
+}
+
+.admin-stat-label {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.sync-btn {
+    background: #f5c842;
+    color: #1a1a2e;
+}
+
+.sync-btn:hover {
+    background: #e6b832;
+}
+
+/* Stream Link Quality Badge */
+.stream-quality {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.stream-quality.hd {
+    background: #4caf50;
+    color: white;
+}
+
+.stream-quality.sd {
+    background: #ff9800;
+    color: white;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .league-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .league-tab {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    
+    .admin-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+}
