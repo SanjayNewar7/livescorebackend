@@ -3,104 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA World Cup 2026 - Stream Dashboard</title>
+    <title>Admin Panel - Stream Manager</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-futbol"></i>
-                <span>World Cup 2026</span>
+                <span>Live Stream Hub</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
-                <a href="admin.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="admin.html" class="active"><i class="fas fa-cog"></i> Admin</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Stats Section -->
-        <section class="stats-section">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                <div class="stat-info">
-                    <span class="stat-number" id="totalGames">0</span>
-                    <span class="stat-label">Total Matches</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-video"></i></div>
-                <div class="stat-info">
-                    <span class="stat-number" id="totalStreams">0</span>
-                    <span class="stat-label">Total Streams</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
-                <div class="stat-info">
-                    <span class="stat-number" id="activeStreams">0</span>
-                    <span class="stat-label">Active Streams</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
-                <div class="stat-info">
-                    <span class="stat-number" id="upcomingMatches">0</span>
-                    <span class="stat-label">Upcoming Matches</span>
-                </div>
-            </div>
-        </section>
+        <div class="admin-header">
+            <h1><i class="fas fa-cog"></i> Admin Panel</h1>
+            <p>Manage stream links for all matches across leagues</p>
+        </div>
 
-        <!-- Filter Section -->
-        <section class="filter-section">
-            <div class="filter-container">
-                <input type="text" id="searchInput" placeholder="Search matches..." class="search-input">
-                <select id="groupFilter" class="filter-select">
-                    <option value="all">All Groups</option>
-                    <option value="Group A">Group A</option>
-                    <option value="Group B">Group B</option>
-                    <option value="Group C">Group C</option>
-                    <option value="Group D">Group D</option>
-                </select>
-                <select id="streamFilter" class="filter-select">
-                    <option value="all">All Matches</option>
-                    <option value="has">Has Stream</option>
-                    <option value="no">No Stream</option>
-                </select>
-                <button id="refreshBtn" class="refresh-btn">
-                    <i class="fas fa-sync"></i> Refresh
-                </button>
-            </div>
-        </section>
+        <div class="admin-actions">
+            <button onclick="syncAllLeagues()" class="admin-btn sync-btn">
+                <i class="fas fa-sync"></i> Sync All Leagues
+            </button>
+            <button onclick="exportData()" class="admin-btn export-btn">
+                <i class="fas fa-download"></i> Export Data
+            </button>
+            <button onclick="importData()" class="admin-btn import-btn">
+                <i class="fas fa-upload"></i> Import Data
+            </button>
+            <button onclick="resetData()" class="admin-btn reset-btn">
+                <i class="fas fa-trash"></i> Reset All
+            </button>
+        </div>
 
-        <!-- Matches Grid -->
-        <section class="matches-section">
-            <div class="matches-grid" id="matchesGrid">
-                <!-- Matches will be rendered here -->
+        <div class="admin-stats">
+            <div class="admin-stat-card">
+                <span class="admin-stat-number" id="adminTotalMatches">0</span>
+                <span class="admin-stat-label">Total Matches</span>
             </div>
+            <div class="admin-stat-card">
+                <span class="admin-stat-number" id="adminTotalStreams">0</span>
+                <span class="admin-stat-label">Total Streams</span>
+            </div>
+            <div class="admin-stat-card">
+                <span class="admin-stat-number" id="adminLeagues">0</span>
+                <span class="admin-stat-label">Leagues</span>
+            </div>
+        </div>
+
+        <section class="admin-matches">
+            <h2><i class="fas fa-list"></i> All Matches</h2>
+            <div id="adminMatchesList"></div>
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 FIFA World Cup Stream Dashboard. All rights reserved.</p>
-    </footer>
-
-    <!-- Modal for Stream Links -->
-    <div class="modal" id="streamModal">
-        <div class="modal-content">
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content modal-large">
             <div class="modal-header">
-                <h2 id="modalTitle">Match Streams</h2>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h2 id="editModalTitle">Manage Stream Links</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Stream links will be rendered here -->
-            </div>
+            <div class="modal-body" id="editModalBody"></div>
         </div>
     </div>
 
